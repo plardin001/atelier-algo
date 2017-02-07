@@ -1,0 +1,10 @@
+1) ( C'est un type qui n'est pas un type de donné du langage C ) FAUX
+
+   C'est un type générique indépendant de l'implémentation.
+
+2) Les structures employés et le choix de complexité en temps et en espace.
+
+3) Pour fixer la sementique générale : 
+   - réemployer dans plusieurs programmes.
+   - Pour un algo donné, on peut remplacer l'implémentation par un autre.
+ 
