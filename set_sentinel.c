@@ -7,6 +7,8 @@
 
 void	set__empty(struct set *a)
 {	
+        if(a == NULL)
+	        return ;
   	(a->s)[0] = -1;
   	(a->s)[SET_SIZE - 1] = -2;
 	return ;
@@ -16,7 +18,7 @@ int	set__is_empty(struct set const *a)
 {
 	if (a == NULL)
 		return (ERROR);
-	if (*(a->s) == -1)
+	if ((a->s)[0] == -1)
 		return (SUCCESS);
 	return (FAILURE);
 }
@@ -86,7 +88,7 @@ int	set__size(struct set const *a)
 			return (j);	
 	}
 	return (ERROR);
-
+}
 	
 int	set__add(struct set *a, int val)
 {
@@ -99,9 +101,6 @@ int	set__add(struct set *a, int val)
 	(a->s)[i] = val;
 	return (SUCCESS);
 	
-}
-
-
 }
 
 int	set__remove(struct set *a, int val)
