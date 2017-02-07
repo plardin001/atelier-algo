@@ -143,15 +143,9 @@ void	test__set__remove()
 	//Test ENSEMBLE NON VIDE
 	struct	set s2;
 	set__empty(&s2);
-	printf("%d %d %d %d\n",(s2.s)[0],(s2.s)[1],(s2.s)[2],(s2.s)[3]);
 	set__add(&s2, 1);
-	printf("%d %d %d %d\n",(s2.s)[0],(s2.s)[1],(s2.s)[2],(s2.s)[3]);
 	set__add(&s2, 7);
-	printf("%d %d %d %d\n",(s2.s)[0],(s2.s)[1],(s2.s)[2],(s2.s)[3]);
-	
 	assert((set__remove(&s2, 1) == 1));
-	
-	printf("%d %d %d %d\n",(s2.s)[0],(s2.s)[1],(s2.s)[2],(s2.s)[3]);
 	
 	assert( (s2.s)[0] == 7);
 	assert( (s2.s)[1] == -1);
