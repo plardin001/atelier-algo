@@ -29,6 +29,28 @@ void	test__shift_right()
 	struct	set s1;
 	set__empty(&s1);
 	assert(set__shift_right(&s1, 0, SET_SIZE - 1) == FAILURE);
+
+	//TEST DECALAGE LEGAL
+	set__add(&s1, 10);
+	set__shift_right(&s1, 0, 1);
+	assert(s1.s[1] == 10 && s1.s[SET_SIZE - 1] == -2 && s1.s[3] == -1);
+	printf("OK\n");
+}
+
+void	test__shift_left()
+{
+	printf("Test shift_left\n");
+
+	//TEST DECALAGE HORS TAILLE MAX
+	struct	set s1;
+	set__empty(&s1);
+	assert(set__shift_left(&s1, 0, SET_SIZE - 1) == FAILURE);
+
+	//TEST DECALAGE LEGAL
+	set__add(&s1, 10);
+	set__add(&s1, 15);
+	set__shift_right(&s1, 0, 2);
+	assert(s1.s[1] == 15 && s1.s[SET_SIZE - 1] == -2 && s1.s[2] == -1);
 	printf("OK\n");
 }
 
@@ -62,9 +84,9 @@ void	test__set__add()
 	struct	set s2;
 	set__empty(&s2);
 	set__add(&s2, 1);
-	assert((set__size(&s2) == 1));	
+	assert((set__size(&s2) == 1) && s2.s[0] == 1 && s2.s[1] == -1 && s2.s[SET_SIZE - 1] == -2);
 	set__add(&s2, 1);
-	assert((set__size(&s2) == 1));	
+	assert((set__size(&s2) == 1) && s2.s[0] == 1 && s2.s[1] == -1 && s2.s[SET_SIZE - 1] == -2);
 	printf("Ok\n");
 }
 
