@@ -1,4 +1,5 @@
 #include "set_sentinel.h"
+#include <stdio.h>
 
 #define SUCCESS 1
 #define FAILURE 0
@@ -23,36 +24,37 @@ int	set__is_empty(struct set const *a)
 	return (FAILURE);
 }
 
-int	set__find(struct set const *a, int val) //retrun the right position of val 
+int        set__find(struct set const *a, int val)
 {
-	int	size;
-	int	begin;
-	int	end;
-	int	mid;
+    int    begin;
+    int    end;
+    int    mid;
+    int    size;
+
+        size = set__size(a);
+        if (size == 0 || a == NULL || val < 0)
+            return (0);
+        begin = 0;
+        end = size - 1;
+        while ((end - begin) > 1)
+        {
+            mid = (end + begin) / 2;
+            if ((a->s)[mid] == val)
+                return (mid);
+            else if ((a->s)[mid] > val)
+                end = mid;
+            else
+                begin = mid;
+        }
 	
-	size = set__size(a);
-	begin = 0;
-	end = size - 1;
-	if (size == 0 || a == NULL || val < 0)
-		return (ERROR);
-	while (end != begin)
+        if (val > (a->s)[begin])
 	{
-		mid = (begin + end) / 2; 
-		if (end - begin == 1 || end - begin == 0)
-		{
-			if ((a->s)[begin] ==  val)
-				return (begin);
-			else
-				return (end);
-		}
-		if (val > (a->s)[mid])
-			 begin = mid;
-		else if ((a->s)[mid] == val)
-			return (mid);
-		else 
-			end = mid;
-	} 
-	return (ERROR);
+	  return (begin + 1);
+	}
+	else
+	{
+	    return (begin);
+	 }
 }
 
 int	set__shift_right(struct set *a, int i, int j) //i first index to move right and j last index to move right
@@ -67,10 +69,16 @@ int	set__shift_right(struct set *a, int i, int j) //i first index to move right 
 
 int	set__shift_left(struct set *a, int i, int j) //i first index to move left and j last index to move right (if i = 0, the value is lost, else, the value i-1 is lost)
 {
-        if (i != 0)
-	        (a->s)[i - 1] = (a->s)[i];
+        
+        if( a == NULL || i < 0 || j < 0 || j > SET_SIZE - 1)
+	         return (ERROR);
+	else if ((a->s)[0] == -1 || i == 0)
+	         return (FAILURE);
 	for(int k = i; k <= j; k++)
-		(a->s)[k] = (a->s)[k + 1];
+	  {
+		(a->s)[k - 1] = (a->s)[k];
+	}
+
 	if (j == SET_SIZE - 1)
 	        (a->s)[j] = -2;
 	else
@@ -96,8 +104,10 @@ int	set__add(struct set *a, int val)
 	int     size;
 
 	i = set__find(a, val);
+	if(val == (a->s)[i])
+	  return(FAILURE);
 	size = set__size(a);
-	set__shift_right(a, i, size);
+	set__shift_right(a, i, size - 1);
 	(a->s)[i] = val;
 	return (SUCCESS);
 	
@@ -108,7 +118,8 @@ int	set__remove(struct set *a, int val)
         int	j;
 
 	j = set__find(a, val);
-	set__shift_left(a, 0, j);
-	(a->s)[j] = val;
+	if(val != (a->s)[j])
+	  return(FAILURE);
+	set__shift_left(a, j+1, SET_SIZE - 1);
 	return (SUCCESS);
 }
