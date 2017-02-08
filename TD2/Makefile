@@ -3,7 +3,6 @@ CC=gcc
 FLAGS= -g -std=c99 -c -Wall -Wextra
 SRC=link.c
 OBJ= $(SRC:.c=.o)
-
 all: $(NAME)
 
 $(NAME):$(OBJ)
