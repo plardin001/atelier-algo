@@ -114,7 +114,7 @@ void			lnk__add_tail(struct link *lst, struct lelement *new)
 	new->next = tmp;
 }
 
-struct lelement			*lnk__remove_tail(struct link *lst, struct lelement *new)
+struct lelement			*lnk__remove_tail(struct link *lst)
 {
 	struct lelement *del;
 	struct lelement *sentinel;
