@@ -1,11 +1,13 @@
 NAME_DEBUG=test_unitaire
 CC=gcc
 FLAGS= -g -std=c99 -c -Wall -Wextra
-SRC=link.c
+SRC=	link.c	\
+	test_unitaire.c
 OBJ= $(SRC:.c=.o)
-all: $(NAME)
 
-$(NAME):$(OBJ)
+all: $(NAME_DEBUG)
+
+$(NAME_DEBUG):$(OBJ)
 		$(CC) $(OBJ) -o $(NAME_DEBUG)
 		./$(NAME_DEBUG)
 
