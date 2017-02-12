@@ -3,6 +3,7 @@ FLAGS = -Wall -std=c99
 all : set_sentinel
 	./a.out
 
+
 test: test_unitaire.o set_sentinel.o
 	gcc $(FLAGS) set_sentinel.o test_unitaire.o
 	./a.out
