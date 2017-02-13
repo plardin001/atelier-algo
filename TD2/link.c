@@ -1,4 +1,5 @@
 #include "link.h"
+#include "unistd.h"
 
 void				lnk__empty(struct link *a)
 {
@@ -22,14 +23,14 @@ struct lelement		*lnk__first(struct link *a)
 }
 
 
-int					llm__is_end_mark(struct lelement *is_sentinel)
+int			llm__is_end_mark(struct lelement *is_sentinel)
 {
 	if (is_sentinel == NULL)
 		return (0);
 	return (is_sentinel->next == is_sentinel);
 }
 
-void				lnk__add_head(struct link *a, struct lelement *new)
+void			lnk__add_head(struct link *a, struct lelement *new)
 {
 	if (a == NULL || a->head == NULL || new == NULL)
 		return ;
