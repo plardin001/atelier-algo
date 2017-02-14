@@ -1,10 +1,15 @@
-#include "set_sentinel.h"
 #include <stdio.h>
 
 #define SUCCESS 1
 #define FAILURE 0
 #define ERROR -1
 
+struct	set
+{
+	int	s[SET_SIZE];
+};
+
+#include "set.h"
 
 void	set__empty(struct set *a)
 {	

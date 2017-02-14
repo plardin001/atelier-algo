@@ -1,0 +1,4 @@
+**Exercice 5**
+1)
+	On ne peut écrire que la fonction prend en paramètre un pointeur vers un struct set car la structure n'est pas connue dans le header.
+	Il faut lui
