@@ -1,18 +1,34 @@
-FLAGS = -Wall -std=c99
+NAME=TAD1
+NAME_DEBUG=test_unitaire
+CC=gcc
+FLAGS= -g -std=c99 -c -Wall -Wextra
+SRC=set_sentinel.c	\
+	test_unitaire.c
+SRC2=set_sentinel_d.c\
+	test_unitaire2.c
+OBJ= $(SRC:.c=.o)
+OBJ2= $(SRC2:.c=.o)
 
-all : set_sentinel
-	./a.out
+all: $(NAME)
 
+$(NAME):$(OBJ)
+		$(CC) $(OBJ) -o $(NAME_DEBUG)
+		./$(NAME_DEBUG)
 
-test: test_unitaire.o set_sentinel.o
-	gcc $(FLAGS) set_sentinel.o test_unitaire.o
-	./a.out
+dyna:$(OBJ2)
+		$(CC) $(OBJ2) -o $(NAME_DEBUG)
+		./$(NAME_DEBUG)
 
-set_sentinel: set_sentinel.o
-	gcc $(FLAGS) set_sentinel.o
+%.o:%.c
+		$(CC) $(FLAGS) $< -o $@
 
-set_sentinel.o: set_sentinel.h set_sentinel.c set.h
-	gcc $(FLAGS) -c set_sentinel.c 
+clean:
+		rm -rf $(OBJ)
 
-test_unitaire.o: test_unitaire.c
-	gcc $(FLAGS) -c test_unitaire.c 
+fclean: clean
+		rm -rf $(NAME)
+		rm -rf $(NAME_DEBUG)
+
+re: fclean all
+
+.PHONY: clean fclean re test_unitaire
