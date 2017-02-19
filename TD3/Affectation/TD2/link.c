@@ -1,18 +1,5 @@
-
-struct 			lelement
-{
-	int		data;
-	struct lelement	*next;
-};
-
-struct			link
-{
-	struct lelement *head;
-};
-
 #include "link.h"
 #include "unistd.h"
-
 
 void				lnk__empty(struct link *a)
 {
@@ -38,7 +25,7 @@ struct lelement		*lnk__first(struct link *a)
 
 int			llm__is_end_mark(struct lelement *is_sentinel)
 {
-	if (is_sentinel == NULL || is_sentinel->next == NULL)
+	if (is_sentinel == NULL)
 		return (0);
 	return (is_sentinel->next == is_sentinel);
 }

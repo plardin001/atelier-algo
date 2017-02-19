@@ -1,21 +1,3 @@
-
-struct 			lelement
-{
-	int		data;
-	struct lelement	*next;
-};
-
-struct			link
-{
-	struct lelement *head;
-};
-
-struct set
-{
-	struct link	*l;
-};
-
-
 #include "set_sentinel.h"
 #include <assert.h>
 #include <stdio.h>

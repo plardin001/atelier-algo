@@ -1,0 +1,163 @@
+#include <assert.h>
+#include <stdio.h>
+
+#include "link.c"
+
+void test_lnk__empty(){
+
+  printf("test de lnk__empty ...");
+
+  struct link *l;
+  lnk__empty(l);
+  assert(l->head->next == l->head);
+
+  printf("OK\n");
+}
+
+void test_lnk__first(){
+
+  printf("test de lnk__first ...");
+
+  struct link *l;
+  lnk__empty(l);
+  //assert(lnk_first(l) == (l->head));
+
+  printf("OK\n");
+}
+
+void test_llm__is_end_mark(){
+  
+  printf("test de lmm__is_end_mark ...");
+
+  struct lelement *e;
+  assert(llm__is_end_mark(NULL) == 0);
+  e->next = e;
+  assert(llm__is_end_mark(e) == 1);
+  e->next = e+1;
+  assert(llm__is_end_mark(e) == 0);
+
+  printf("OK\n");
+}
+
+void test_lnk__add_head(){
+  
+  printf("test de lnk__add_head...");
+
+  struct link *l;
+  struct lelement *new;
+
+  lnk__add_head(l,new);
+
+  assert(l->head == new);
+
+  printf("OK\n");
+}
+
+void test_lnk__remove_head(){
+  printf("test de lnk__remove_head");
+
+  struct link *l;
+  struct lelement *e;
+  lnk__empty(l);
+  lnk__add_head(l,e);
+  assert(lnk__remove_head() == e);
+  assert(llm__is_end_mark(l->head));
+
+  printf("OK\n");
+
+}
+
+void test_llm__next(){
+  printf("test de llm__next");
+  
+  struct lelement *e1;
+  struct lelement *e2;
+  struct link *l;
+  lnk__empty(l);
+  lnk__add_head(l,e1);
+  lnk__add_head(l,e2);
+  assert(llm__next(e1) == e2);
+
+  printf("OK\n");
+
+}
+
+void test_lnk__add_after(){
+  printf("test de lnk__add_after");
+
+  struct link *l;
+  struct lelement *e1;
+  struct lelement *e2;
+  struct lelement *e3;
+  lnk__empty(l);
+  lnk__add_head(l,e2);
+  lnk__add_head(l,e1);
+  lnk__add_after(l,e1,e3);    
+  assert(e1->next == e3);
+  assert(e3->next == e2);
+  assert(llm__is_end_mark(e2));
+
+  printf("OK\n");
+}
+
+void test_lnk__remove_after(){
+  printf("test de lnk__remove_after");
+
+  struct link *l;
+  struct lelement *e1;
+  struct lelement *e2;
+  struct lelement *e3;
+  lnk__empty(l);
+  lnk__add_head(l,e3);
+  lnk__add_head(l,e2);
+  lnk__add_head(l,e1);
+  assert (lnk__remove_after(l,e1) == e2 );    
+  assert(e1->next == e3);
+  assert(llm__is_end_mark(e3));
+
+  printf("OK\n");
+}
+
+void test_lnk__add_tail(){
+  printf("test de lnk__add_tail");
+  
+  struct link *l;
+  struct lelement *e1;
+  struct lelement *e2;
+  lnk__empty(l);
+  lnk__add_tail(l,e1);
+  lnk__add_tail(l,e2);    
+  assert(e1->next == e2);
+  assert(llm__is_end_mark(e2));
+}
+
+void test_lnk__remove_tail(){
+  printf("test de lnk__remove_tail");
+  
+  struct link *l;
+  struct lelement *e1;
+  struct lelement *e2;
+  struct lelement *e3;
+  lnk__empty(l);
+  lnk__add_tail(l,e1);
+  lnk__add_tail(l,e2);    
+  lnk__add_tail(l,e3);    
+  assert(lnk__remove_tail(l) == e3;);
+  assert(e1->next == e2);
+  assert(llm__is_end_mark(e2));
+}
+
+int main(){
+
+  test_lnk__empty();
+  //test_lnk__first();
+  test_llm__is_end_mark();
+  test_lnk__add_head();
+  test_lnk__remove_head();
+  test_llm__next();
+  test_lnk__add_after();
+  test_lnk__remove_after();
+  test_lnk__add_tail();
+  test_lnk__remove_tail();
+
+}

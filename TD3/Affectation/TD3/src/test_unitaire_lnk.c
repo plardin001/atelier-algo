@@ -1,18 +1,5 @@
 #include <assert.h>
 #include <stdio.h>
-
-struct 			lelement
-{
-	int		data;
-	struct lelement	*next;
-};
-
-struct			link
-{
-	struct lelement *head;
-};
-
-
 #include "link.h"
 
 void	test_lnk__empty()

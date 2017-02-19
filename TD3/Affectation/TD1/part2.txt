@@ -1,0 +1,2 @@
+**Exercice 6**
+3- Pour pouvoir rajouter des champs à la structure tel que la taille de l'élement

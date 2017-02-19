@@ -11,17 +11,16 @@ struct set
 #include "set.h"
 
 
-struct set	*set__empty(void)
+void	set__empty(struct set *a)
 {
-		struct set *a;
-
-		a = (struct set *)malloc(sizeof(struct set));
 		if (a == NULL)
-			return (NULL);
+			return ;
 		a->size = 0;
+		if (a->s != NULL)
+			free(a->s);
 		a->s = NULL;
 		a->capacity = 0;
-		return (a);
+		return ;
 }
 
 int		set__is_empty(struct set const *a)
@@ -68,11 +67,6 @@ int		find(struct set const *a, int val)
 			return (debut + 1);
 		else
 			return (debut);
-}
-
-int		set__find(struct set const *a, int val)
-{
-	return ((a->s)[find(a, val)] == val);
 }
 
 
@@ -155,37 +149,11 @@ int		set__remove(struct set *a, int val)
 	return (1);
 }
 
-int	ft_filter(int element)
+void	set__free(struct set *a)
 {
-	return (element % 2);
-}
-
-
-struct set	*set__filter(const struct set *a, int (*f)(int))
-{
-	struct set	*s;
-	size_t		i;
-
-	i = 0;
 	if (a == NULL)
-		return (NULL);
-	s = set__empty();
-	while (i < a->size)
-	{
-		if ((*f)(a->s[i]))
-			set__add(s, (a->s)[i]);
-		i++;
-	}
-	return (s);
-	
-		
-}
-
-void	set__free(struct set **a)
-{
-	if (a == NULL || *a == NULL)
 		return ;
-	if ((*a)->s != NULL)
-		free((*a)->s);
-	free(*a);
+	if (a->s != NULL)
+		free(a->s);
+	free(a);
 }

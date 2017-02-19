@@ -13,7 +13,7 @@ int main () {
   set__add(s1, 555);
 
   struct set *s2 = set__empty();
-	set__free(&s2);
+
   printf("affectation : s2 = s1\n");
   s2 = s1;
   printf("s2 nb element:resultat (5) -> %d\n", set__size(s2));
@@ -24,9 +24,7 @@ int main () {
   printf("9 dans s2:resultat (NON) -> %s\n", set__find(s2, 9)? "OK" : "NON");
   printf("s2 nb elements:resultat (5) -> %d\n", set__size(s2));
 
-  set__free(&s1);
-  
-  //set__free(&s2);
-	return 1;
+  //set__free(&s1);
+  return 1;
 }
 

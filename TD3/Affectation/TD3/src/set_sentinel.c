@@ -1,15 +1,16 @@
-#include "set.h"
 #include <stdio.h>
 
 #define SUCCESS 1
 #define FAILURE 0
 #define ERROR -1
+#define SET_SIZE 10
 
 struct	set
 {
 	int	s[SET_SIZE];
 };
 
+#include "set.h"
 
 void	set__empty(struct set *a)
 {	
@@ -127,4 +128,9 @@ int	set__remove(struct set *a, int val)
 	  return(FAILURE);
 	set__shift_left(a, j+1, SET_SIZE - 1);
 	return (SUCCESS);
+}
+
+void	set__free(struct set *a)
+{
+	return ;
 }

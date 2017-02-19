@@ -10,7 +10,7 @@ void	test_find()
 
 	printf("Test TAD empty\n");
 	struct set s1;
-	s1 = *set__empty();
+	set__empty(&s1);
 	assert(!find(&s1, 10));
 
 	s1.s = (int *)malloc(sizeof(int) * 3);
@@ -33,7 +33,7 @@ void	test__shift_right()
 	printf("-----------Test shift_right-----------\n");
 
 	struct	set s1;
-	s1 = *set__empty();
+	set__empty(&s1);
 	printf("TEST Decalage 2 elements\n");
 	s1.s = (int *)malloc(sizeof(int) * 4);
 	if (s1.s == NULL)
@@ -53,7 +53,7 @@ void	test__shift_left()
 	printf("-----------Test shift_left-----------\n");
 
 	struct	set s1;
-	s1 = *set__empty();
+	set__empty(&s1);
 	printf("TEST Decalage non autorisee\n");
 	s1.s = (int *)malloc(sizeof(int) * 4);
 	if (s1.s == NULL)
@@ -81,7 +81,7 @@ void	test__set__is_empty()
 	
 	printf("Test ENSEMBLE VIDE\n");
 	struct	set s1;
-	s1 = *set__empty(s1);
+	set__empty(&s1);
 	assert(set__is_empty(&s1));
 
 	printf("Test ENSEMBLE NON VIDE\n");
@@ -106,7 +106,7 @@ void	test__set__size()
 	
 	printf("TEST ENSEMBLE VIDE\n");
 	struct	set s1;
-	s1 = *set__empty();
+	set__empty(&s1);
 	assert((set__size(&s1) == 0));
 
 	printf("Test ENSEMBLE NON VIDE\n");
@@ -130,7 +130,7 @@ void	test__set__add()
 	
 	printf("TEST ENSEMBLE VIDE\n");
 	struct	set s1;
-	s1 = *set__empty();
+	set__empty(&s1);
 	set__add(&s1, 1);
 	assert((set__size(&s1) == 1) && (s1.s)[0] == 1);
 	printf("TEST element deja existant\n");
@@ -173,7 +173,7 @@ void	test__set__remove()
 	
 	printf("TEST ENSEMBLE VIDE\n");
 	struct	set s1;
-	s1 = *set__empty();
+	set__empty(&s1);
 	assert((set__remove(&s1, 1) == 1));
 
 	printf("Test ENSEMBLE NON VIDE\n");

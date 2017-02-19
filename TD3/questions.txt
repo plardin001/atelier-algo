@@ -1,4 +1,7 @@
 **Exercice 5**
 1)
-	On ne peut écrire que la fonction prend en paramètre un pointeur vers un struct set car la structure n'est pas connue dans le header.
-	Il faut lui
+	Si on choisit comme prototype  void set__empty(struct set *)
+		Soit on declare de maniere automatique struct set a l'exterieur de la fonction, or le compilateur ne connait pas struct set
+		Soit on declare de maniere dynamique struct set a l'exterieur de la fonciton, or a l'appel de sizeof dans le malloc, on a besoin de la definition de struct set
+
+5)	Affection ne traite qu'avec des pointeurs de struct set, elle n'utilise pas struct set, le compilateur n'a pas besoin pour l'instant de plus d'information.

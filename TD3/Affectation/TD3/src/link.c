@@ -38,7 +38,7 @@ struct lelement		*lnk__first(struct link *a)
 
 int			llm__is_end_mark(struct lelement *is_sentinel)
 {
-	if (is_sentinel == NULL || is_sentinel->next == NULL)
+	if (is_sentinel == NULL)
 		return (0);
 	return (is_sentinel->next == is_sentinel);
 }
@@ -144,4 +144,33 @@ struct lelement			*lnk__remove_tail(struct link *lst)
 	sentinel = tmp->next->next;
 	tmp->next = sentinel;
 	return (del);
+}
+
+void	set__free(struct set *s)
+{
+	struct	set *tmp;
+	struct	set *next;
+
+	if (s == NULL)
+		return ;
+	if (s->l == NULL)
+	{
+		free(s);
+		return ;
+	}
+	if (s->l->head == NULL)
+	{
+		free(s->l);
+		free(s);
+		return ;
+	}
+	tmp = s->l->head;
+	while (!llm__is_end_mark(tmp))
+	{
+		next = tmp->next;
+		free(tmp);
+		tmp = next;		
+	}
+	free(tmp);
+	return ;
 }

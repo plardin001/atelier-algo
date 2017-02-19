@@ -1,27 +1,18 @@
+#include "set_sentinel.h"
 #include <stdio.h>
 
 #define SUCCESS 1
 #define FAILURE 0
 #define ERROR -1
-#define SET_SIZE 10
 
-struct	set
-{
-	int	s[SET_SIZE];
-};
 
-#include "set.h"
-
-struct set	*set__empty(void)
+void	set__empty(struct set *a)
 {	
-	struct set *a;
-	
-	a = (struct set *)malloc(sizeof(struct set));
         if(a == NULL)
-	        return (NULL);
+	        return ;
   	(a->s)[0] = -1;
   	(a->s)[SET_SIZE - 1] = -2;
-	return (a);
+	return ;
 }
 
 int	set__is_empty(struct set const *a)
@@ -131,11 +122,4 @@ int	set__remove(struct set *a, int val)
 	  return(FAILURE);
 	set__shift_left(a, j+1, SET_SIZE - 1);
 	return (SUCCESS);
-}
-
-void	set__free(struct set **a)
-{
-	if (a == NULL || *a == NULL)
-		return ;
-	free(*a);
 }

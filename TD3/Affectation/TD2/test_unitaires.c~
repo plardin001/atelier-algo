@@ -1,0 +1,17 @@
+#include <link.h>
+
+void test_lnk__empty(){
+  struct link l;
+  lnk__empty(&l);
+  assert(l->head->next == l->head);
+}
+
+void test_lnk_first(){
+  struct link l;
+  lnk__empty(&l);
+  
+}
+
+int main(){
+
+}

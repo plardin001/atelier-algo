@@ -1,0 +1,57 @@
+**Exercice 2** : (is empty)
+
+1)
+	int set__is_empty(struct set* set);
+
+2)
+	L'espace mémoire utilisé est moindre lors d'un passage par adresse. (surtout pour un ensemble de grande cardinalité.)
+
+3)
+	Car c'est une structure set qui est placé en paramètre.
+
+**Exercice 3** : (add)
+
+1)
+	Grace au paramètrage par adresse, c'est la zone mémoire sur laquelle est l'ensemble qui est directement modifié.
+
+2)
+	Le retour d'une valeur représentant la réussite ou l'échec de l'opération peut être utile, par exemple pour savoir si :
+	- l'element était déjà dans l'ensemble
+	- la structure est pleine.
+	- l'entier est négatif
+
+3)
+	int set__add(struct set* set, int val);
+
+**Execrice 4** : (construct set)
+1)
+	 a)struct set * set__empty();
+  
+Retourne un pointeur vers une structure : Allocation par le TAD
+
+	 b)struct set set__empty();
+
+Retourne une structure : allocation par le client
+
+	 c)void set__empty(struct set *);
+       
+Le client place le pointeur en paramètre : Il alloue la place
+
+2)
+
+	Pour savoir quelle place allouer
+
+3)  a) Sert à laisser le TAD alouer la place, on travaille avec le pointeur retourné.
+       + : évite de copier les données 
+       - : Nécessite allocation dynamique
+
+    b) +: 
+       -: plusieurs allocations : copies
+
+    c) Il faut allouer la place à l'avance et donner le pointeur vers la lace allouée.
+       + : évite de copier les données et gère la place
+       - : Il faut bien prévoir la place à allouer à l'avance
+
+
+**Exercice 5**
+	   implémentation faite
